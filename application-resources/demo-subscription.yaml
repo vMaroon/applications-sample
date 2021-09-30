@@ -1,0 +1,16 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: Subscription
+metadata:
+  name: scramble-demo-subscription
+  namespace: scramble-app
+  labels:
+    app: scramble-demo
+  annotations:
+    apps.open-cluster-management.io/git-path: application-deployment
+    apps.open-cluster-management.io/git-branch: main
+spec:
+  channel: scramble-app/demo-channel
+  placement:
+    placementRef:
+      kind: PlacementRule
+      name: cluster15

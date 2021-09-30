@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scrambler-deployment
+  namespace: test-scrambler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: scrambler
+  template:
+    metadata:
+      labels:
+        name: scrambler
+    spec:
+      containers:
+        - name: scrambler
+          image: golan1414/scrambler:latest
+          imagePullPolicy: Always
