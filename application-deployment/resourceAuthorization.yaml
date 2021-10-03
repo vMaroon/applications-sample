@@ -7,6 +7,7 @@ rules:
       - "batch.github.com.golanshabi"
     resources:
       - scrambleds
+      - scrambleds/status
     verbs:
       - get
       - list
