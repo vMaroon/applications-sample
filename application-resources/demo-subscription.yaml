@@ -7,7 +7,7 @@ metadata:
     app: scramble-demo
   annotations:
     apps.open-cluster-management.io/git-path: application-deployment
-    apps.open-cluster-management.io/git-branch: main
+    apps.open-cluster-management.io/git-branch: master
 spec:
   channel: scramble-app/demo-channel
   placement:
