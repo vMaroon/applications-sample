@@ -2,7 +2,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: Channel
 metadata:
   name: demo-channel
-  namespace: scramble-app
+  namespace: application-sample
 spec:
   type: Git
   pathname: https://github.com/golanshabi/applications-sample.git

@@ -6,10 +6,10 @@ metadata:
   labels:
     app: scramble-demo
   annotations:
-    apps.open-cluster-management.io/git-path: application-deployment
+    apps.open-cluster-management.io/git-path: scrambler/application-deployment
     apps.open-cluster-management.io/git-branch: master
 spec:
-  channel: scramble-app/demo-channel
+  channel: application-sample/demo-channel
   placement:
     placementRef:
       kind: PlacementRule
