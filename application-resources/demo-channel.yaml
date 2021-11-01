@@ -5,4 +5,4 @@ metadata:
   namespace: scramble-app
 spec:
   type: Git
-  pathname: https://github.com/golanshabi/scrambler-application.git
+  pathname: https://github.com/golanshabi/applications-sample.git
