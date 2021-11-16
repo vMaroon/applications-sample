@@ -2,7 +2,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   name: cluster15
-  namespace: bookinfo
+  namespace: book-info
 spec:
   clusterConditions:
     - type: "ManagedClusterConditionAvailable"

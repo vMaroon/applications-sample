@@ -2,7 +2,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: Subscription
 metadata:
   name: book-info-sub
-  namespace: bookinfo
+  namespace: book-info
   labels:
     app: book-info
   annotations:
