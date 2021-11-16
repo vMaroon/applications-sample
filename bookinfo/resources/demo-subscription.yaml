@@ -13,4 +13,4 @@ spec:
   placement:
     placementRef:
       kind: PlacementRule
-      name: cluster15
+      name: cluster16
