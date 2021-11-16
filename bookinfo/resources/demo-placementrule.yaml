@@ -4,6 +4,10 @@ metadata:
   name: cluster15
   namespace: bookinfo
 spec:
+  clusterConditions:
+    - type: "ManagedClusterConditionAvailable"
+      status: "True"
   clusterSelector:
+    matchExpressions: []
     matchLabels:
-      environment: dev
+      name: cluster15
