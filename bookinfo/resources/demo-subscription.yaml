@@ -2,7 +2,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: Subscription
 metadata:
   name: book-info-sub
-  namespace: book-info
+  namespace: bookinfo
   labels:
     app: book-info
   annotations:
@@ -11,6 +11,4 @@ metadata:
 spec:
   channel: application-sample/demo-channel
   placement:
-    placementRef:
-      kind: PlacementRule
-      name: cluster15
+    local: true
