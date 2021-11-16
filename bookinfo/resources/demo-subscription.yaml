@@ -11,5 +11,6 @@ metadata:
 spec:
   channel: application-sample/demo-channel
   placement:
-    kind: PlacementRule
-    name: cluster15
+    placementRef:
+      kind: PlacementRule
+      name: cluster15
