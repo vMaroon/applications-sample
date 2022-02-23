@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  namespace: deep-model
+spec:
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/upload"
+        backend:
+          service:
+            name: i4q-demo-deployment
+            port:
+              number: 9080
