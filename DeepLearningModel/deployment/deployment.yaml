@@ -51,7 +51,7 @@ metadata:
   name: i4q-demo-deployment
   namespace: deep-model
   labels:
-    app: deep-model
+    app: i4q-demo-deployment
     service: deep-model
 spec:
   ports:
