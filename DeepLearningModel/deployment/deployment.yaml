@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: i4q-demo-deployment
+  labels:
+    app: i4q-demo-deployment
 spec:
   selector:
     matchLabels:
@@ -10,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: i4q-demo
+        app: i4q-demo-deployment
     spec:
       containers:
       - name: i4q-demo-http-server
@@ -52,11 +54,11 @@ metadata:
   namespace: deep-model
   labels:
     app: i4q-demo-deployment
-    service: deep-model
+    service: i4q-demo-deployment
 spec:
   ports:
   - port: 9080
     name: http
   selector:
-    app: i4q-demo
+    app: i4q-demo-deployment
 
