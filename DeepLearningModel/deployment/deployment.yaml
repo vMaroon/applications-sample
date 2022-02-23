@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: i4q-demo-deployment
+spec:
+  selector:
+    matchLabels:
+      app: i4q-demo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: i4q-demo
+    spec:
+      containers:
+      - name: i4q-demo-http-server
+        image: quay.io/osternbe/i4q-demo-http-server:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: /upload
+          name: shared-volume-picture        
+#        command: ['sh', '-c', 'python', 'http_server.py', '../upload']
+      - name: i4q-demo-app
+        image: quay.io/osternbe/i4q-demo-app:latest
+        imagePullPolicy: Always
+        command: ['sh', '-c', 'sleep 3600']
+        volumeMounts:
+        - mountPath: /model
+          name: shared-volume-model
+        - mountPath: /pictures
+          name: shared-volume-picture          
+      initContainers:  
+      - name: i4q-demo-model
+        image: quay.io/osternbe/i4q-demo-model:latest
+        imagePullPolicy: Always
+        command: ['sh', '-c', 'cp -R * ../shared-volume-model/']
+        volumeMounts:
+        - mountPath: /shared-volume-model
+          name: shared-volume-model
+      volumes:
+        - name: shared-volume-model
+          emptyDir: {}
+        - name: shared-volume-picture
+          emptyDir: {}
+
