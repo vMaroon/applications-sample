@@ -13,4 +13,4 @@ spec:
     - key: app
       operator: In
       values:
-      - deep-model-subs
+      - deep-model
