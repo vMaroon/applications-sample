@@ -1,10 +1,10 @@
 apiVersion: apps.open-cluster-management.io/v1
 kind: Subscription
 metadata:
-  name: deep-model-subs
+  name: i4q-demo-subs
   namespace: deep-model
   labels:
-    app: deep-model
+    app: i4q-demo
   annotations:
     apps.open-cluster-management.io/git-path: DeepLearningModel/deployment
     apps.open-cluster-management.io/git-branch: master
