@@ -12,4 +12,11 @@ spec:
     name: http
   selector:
     app: i4q-demo-deployment
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: i4q-demo
+  labels:
+    account: i4q-demo-deployment
 
