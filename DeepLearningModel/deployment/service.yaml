@@ -8,8 +8,10 @@ metadata:
     service: i4q-demo-deployment
 spec:
   ports:
-  - port: 9080
+  - port: 80
+    protocol: TCP
     name: http
+    targetPort: 5000
   selector:
     app: i4q-demo-deployment
 ---
