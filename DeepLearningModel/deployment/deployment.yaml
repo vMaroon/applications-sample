@@ -26,7 +26,7 @@ spec:
           name: shared-volume-picture        
 #        command: ['sh', '-c', 'python', 'http_server.py', '../upload']
       - name: i4q-demo-app
-        image: quay.io/osternbe/i4q-demo-app:1.0
+        image: quay.io/osternbe/i4q-demo-app:latest
         imagePullPolicy: Always
         command: ['sh', '-c', 'sleep 3600']
         volumeMounts:
@@ -36,7 +36,7 @@ spec:
           name: shared-volume-picture          
       initContainers:  
       - name: i4q-demo-model
-        image: quay.io/osternbe/i4q-demo-model:1.0
+        image: quay.io/osternbe/i4q-demo-model:latest
         imagePullPolicy: Always
         command: ['sh', '-c', 'cp -R * ../shared-volume-model/']
         volumeMounts:
