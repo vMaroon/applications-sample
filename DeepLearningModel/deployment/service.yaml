@@ -9,7 +9,9 @@ metadata:
 spec:
   ports:
   - port: 9080
+    protocol: TCP
     name: http
+    targetPort: 80
   selector:
     app: i4q-demo-deployment
 ---
