@@ -11,7 +11,7 @@ spec:
   - port: 9080
     protocol: TCP
     name: http
-    targetPort: 80
+    targetPort: 5000
   selector:
     app: i4q-demo-deployment
 ---
