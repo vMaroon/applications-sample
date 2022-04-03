@@ -18,9 +18,9 @@ spec:
       - name: i4q-demo-http-server
         resources:   
           limits:
-            ephemeral-storage: 1Mi
+            ephemeral-storage: 150Ki
           requests:
-            ephemeral-storage: 1Mi
+            ephemeral-storage: 104Ki
         image: quay.io/osternbe/i4q-demo-http-server:latest
         imagePullPolicy: Always
         ports:
@@ -33,9 +33,9 @@ spec:
       - name: i4q-demo-app
         resources:   
           limits:
-            ephemeral-storage: 1Mi
+            ephemeral-storage: 150Ki
           requests:
-            ephemeral-storage: 1Mi
+            ephemeral-storage: 104Ki
         image: quay.io/osternbe/i4q-demo-app:latest
         imagePullPolicy: Always
         command: ['sh', '-c', 'sleep 3600']
@@ -48,9 +48,9 @@ spec:
       - name: i4q-demo-model
         resources:   
           limits:
-            ephemeral-storage: 1Mi
+            ephemeral-storage: 150Ki
           requests:
-            ephemeral-storage: 1Mi
+            ephemeral-storage: 104Ki
         image: quay.io/osternbe/i4q-demo-model:latest
         imagePullPolicy: Always
         command: ['sh', '-c', 'cp -R * ../shared-volume-model/']
