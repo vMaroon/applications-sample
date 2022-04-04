@@ -35,7 +35,6 @@ metadata:
   name: i4q-demo-deployment
   namespace: default
   resourceVersion: "2485"
-  uid: 909f06e7-cfe8-4fc1-8a55-07d9d569a65b
 spec:
   allocateLoadBalancerNodePorts: true
   clusterIP: 10.43.162.248
@@ -71,7 +70,6 @@ metadata:
   name: i4q-demo-deployment
   namespace: default
   resourceVersion: "3071"
-  uid: dca4a67c-8e4f-452d-b845-d331fc832055
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
