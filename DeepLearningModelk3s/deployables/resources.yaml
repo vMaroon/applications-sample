@@ -1,0 +1,145 @@
+# working ingresss
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{},"name":"example-ingress","namespace":"default"},"spec":{"rules":[{"http":{"paths":[{"backend":{"service":{"name":"i4q-demo-deployment","port":{"number":5000}}},"path":"/upload","pathType":"Prefix"}]}}]}}
+  creationTimestamp: "2022-04-03T12:22:42Z"
+  generation: 4
+  name: example-ingress
+  namespace: default
+  resourceVersion: "1502"
+  uid: a0e26095-9a3d-4bff-b9c5-4be27539f34f
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: i4q-demo-deployment
+            port:
+              number: 80
+        path: /upload
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.64.4    
+---
+# working service (used expose)
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2022-04-03T13:27:29Z"
+  name: i4q-demo-deployment
+  namespace: default
+  resourceVersion: "2485"
+  uid: 909f06e7-cfe8-4fc1-8a55-07d9d569a65b
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.43.162.248
+  clusterIPs:
+  - 10.43.162.248
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 30350
+    port: 80
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: i4q-demo
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}
+---
+# working deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"i4q-demo-deployment","namespace":"default"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"i4q-demo"}},"template":{"metadata":{"labels":{"app":"i4q-demo"}},"spec":{"containers":[{"image":"quay.io/osternbe/i4q-demo-http-server:latest","imagePullPolicy":"Always","name":"i4q-demo-http-server","ports":[{"containerPort":8080}],"volumeMounts":[{"mountPath":"/upload","name":"shared-volume-picture"}]},{"command":["sh","-c","sleep 3600"],"image":"quay.io/osternbe/i4q-demo-app:1.0","imagePullPolicy":"Always","name":"i4q-demo-app","volumeMounts":[{"mountPath":"/model","name":"shared-volume-model"},{"mountPath":"/pictures","name":"shared-volume-picture"}]}],"initContainers":[{"command":["sh","-c","cp -R * ../shared-volume-model/"],"image":"quay.io/osternbe/i4q-demo-model:1.0","imagePullPolicy":"Always","name":"i4q-demo-model","volumeMounts":[{"mountPath":"/shared-volume-model","name":"shared-volume-model"}]}],"volumes":[{"emptyDir":{},"name":"shared-volume-model"},{"emptyDir":{},"name":"shared-volume-picture"}]}}}}
+  creationTimestamp: "2022-04-03T13:26:23Z"
+  generation: 1
+  name: i4q-demo-deployment
+  namespace: default
+  resourceVersion: "3071"
+  uid: dca4a67c-8e4f-452d-b845-d331fc832055
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: i4q-demo
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: i4q-demo
+    spec:
+      containers:
+      - image: quay.io/osternbe/i4q-demo-http-server:latest
+        imagePullPolicy: Always
+        name: i4q-demo-http-server
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /upload
+          name: shared-volume-picture
+      - command:
+        - sh
+        - -c
+        - sleep 3600
+        image: quay.io/osternbe/i4q-demo-app:1.0
+        imagePullPolicy: Always
+        name: i4q-demo-app
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /model
+          name: shared-volume-model
+        - mountPath: /pictures
+          name: shared-volume-picture
+      dnsPolicy: ClusterFirst
+      initContainers:
+      - command:
+        - sh
+        - -c
+        - cp -R * ../shared-volume-model/
+        image: quay.io/osternbe/i4q-demo-model:1.0
+        imagePullPolicy: Always
+        name: i4q-demo-model
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /shared-volume-model
+          name: shared-volume-model
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - emptyDir: {}
+        name: shared-volume-model
+      - emptyDir: {}
+        name: shared-volume-picture
+
