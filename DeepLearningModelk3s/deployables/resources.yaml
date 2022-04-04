@@ -107,7 +107,7 @@ spec:
         - sh
         - -c
         - sleep 3600
-        image: quay.io/osternbe/i4q-demo-app:1.0
+        image: quay.io/osternbe/i4q-demo-app:latest
         imagePullPolicy: Always
         name: i4q-demo-app
         resources: {}
@@ -124,7 +124,7 @@ spec:
         - sh
         - -c
         - cp -R * ../shared-volume-model/
-        image: quay.io/osternbe/i4q-demo-model:1.0
+        image: quay.io/osternbe/i4q-demo-model:latest
         imagePullPolicy: Always
         name: i4q-demo-model
         resources: {}
