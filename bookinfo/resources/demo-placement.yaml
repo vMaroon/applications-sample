@@ -2,7 +2,7 @@ apiVersion: cluster.open-cluster-management.io/v1alpha1
 kind: Placement
 metadata:
   name: book-info-placement
-  namespace: book-info
+  namespace: default
 spec:
     predicates:
     - requiredClusterSelector:

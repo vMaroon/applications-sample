@@ -2,7 +2,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: Channel
 metadata:
   name: demo-channel
-  namespace: application-sample
+  namespace: default
 spec:
   type: Git
-  pathname: https://github.com/golanshabi/applications-sample.git
+  pathname: https://github.com/vMaroon/applications-sample.git

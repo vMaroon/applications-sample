@@ -2,15 +2,15 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: Subscription
 metadata:
   name: book-info-sub
-  namespace: book-info
+  namespace: default
   labels:
     app: book-info
   annotations:
     apps.open-cluster-management.io/git-path: bookinfo/deployment
     apps.open-cluster-management.io/git-branch: master
 spec:
-  channel: application-sample/demo-channel
+  channel: default/demo-channel
   placement:
     placementRef:
       kind: PlacementRule
-      name: cluster16
+      name: book-info
