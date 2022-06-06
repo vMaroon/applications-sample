@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: simple-rest-golang-ingress
@@ -10,6 +10,9 @@ spec:
   - http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: simple-rest-golang-service
-          servicePort: 80
+          service:
+            name: simple-rest-golang-service
+            port:
+              number: 80
