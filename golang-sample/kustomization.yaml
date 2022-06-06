@@ -1,3 +1,4 @@
-- golang-rest-deployment.yaml
-- golang-rest-ingress.yaml
-- golang-rest-service.yaml
+resources:
+  - golang-rest-deployment.yaml
+  - golang-rest-ingress.yaml
+  - golang-rest-service.yaml
